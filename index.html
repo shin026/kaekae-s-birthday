@@ -19,9 +19,12 @@
 </head>
 
 <body>
+
     <audio id="bgMusic" loop>
         <source src="./music/Jolianne, Arthur Nery  Palayo Sa Mundo (Official Lyric Video).mp3" type="audio/mpeg">
     </audio>
+
+
     <div id="wrapper">
         <div class="flag__birthday">
             <img src="./images/1.png" alt="" width="350" class="flag__left">
@@ -61,6 +64,7 @@
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                     </button>
+
                     <div class="nextBtnBox">
                         <button id="nextPageBtn">Next →</button>
                     </div>
@@ -160,6 +164,7 @@
             </div>
         </div>
     </div>
+
     <div class="page2">
 
         <h1 class="galleryTitle">Photo Gallery 📸</h1>
@@ -228,176 +233,155 @@
     </div>
 </div>
 
+
+            <!--Page 2 -->
+        
+            <div class="page2">
+
+                <div class="page2-content">
+            
+                    <h1>Photo Gallery 📸</h1>
+            
+                    <div class="gallery">
+            
+                        <div class="photo" data-letter="You are always special 💌">
+                            <img src="./images/kae2.png">
+                        </div>
+            
+                        <div class="photo" data-letter="Thank you for the memories 💖">
+                            <img src="./images/kae3.png">
+                        </div>
+            
+                        <div class="photo" data-letter="Wish you happiness every day 🎂">
+                            <img src="./images/kae1.png">
+                        </div>
+            
+                    </div>
+            
+                    <button id="backBtn">← Back</button>
+            
+                </div>
+            </div>
+</div>
+<div class="letterPopup">
+    <div class="letterBox">
+        <span class="closeLetter">×</span>
+        <p id="letterText"></p>
+    </div>
+</div>
+</div>
+</div>
+
 </body>
 <script>
+    
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ================= DATE ================= */
     let datetxt = "24 June 2026";
-    let datatxtletter = "My love. You are a very special girl. I always silently thank you for coming into my life. Today, I wish you all the best, lots of health, and lots of joy. I always hope we will celebrate many more birthdays like this together. Happy birthday to you.💕";
-    let titleLetter = "To you";
-    let charArrDate = datetxt.split('');
-    let charArrDateLetter = datatxtletter.split('');
-    let charArrTitle = titleLetter.split('');
-    let currentIndex = 0;
-    let currentIndexLetter = 0;
-    let currentIndexTitle = 0;
-    let date__of__birth = document.querySelector(".date__of__birth span");
-    let text__letter = document.querySelector(".text__letter p");
-    setTimeout(function () {
-        timeDatetxt = setInterval(function () {
-            if (currentIndex < charArrDate.length) {
-                date__of__birth.textContent += charArrDate[currentIndex];
-                currentIndex++;
-            }
-            else {
-                let i = document.createElement("i");
-                i.className = "fa-solid fa-star"
-                document.querySelector(".date__of__birth").prepend(i)
-                document.querySelector(".date__of__birth").appendChild(i.cloneNode(true))
-                clearInterval(timeDatetxt)
-            }
-        }, 100)
-    }, 12000)
+    let dateArr = datetxt.split('');
+    let i = 0;
 
-    var intervalContent;
-    var intervalTitle;
-    $("#btn__letter").on("click", function () {
-        $(".box__letter").slideDown()
-        setTimeout(function () {
-            $(".letter__border").slideDown();
-        }, 1000)
-        setTimeout(function () {
-            intervalTitle = setInterval(function () {
-                if (currentIndexTitle < charArrTitle.length) {
-                    document.querySelector(".title__letter").textContent += charArrTitle[currentIndexTitle];
-                    let i = document.createElement("i");
-                    i.className = "fa-solid fa-heart"
-                    document.querySelector(".title__letter").appendChild(i)
-                    currentIndexTitle++;
-                }
-                else {
-                    clearInterval(intervalTitle)
-                }
-            }, 100)
-        }, 2000)
-        setTimeout(function () {
-            document.querySelector("#heart__letter").classList.add("animationOp");
-            document.querySelector(".love__img").classList.add("animationOp");
-            document.querySelector("#mewmew").classList.add("animationOp");
-        }, 2800)
-        setTimeout(function () {
-            document.querySelectorAll(".heart").forEach((item) => {
-                item.classList.add("animation")
-            })
-        }, 3500)
-        setTimeout(function () {
-            intervalContent = setInterval(function () {
-                if (currentIndexLetter < charArrDateLetter.length) {
-                    text__letter.textContent += charArrDateLetter[currentIndexLetter];
-                    currentIndexLetter++;
-                }
-                else {
-                    clearInterval(intervalContent)
-                }
-            }, 50)
-        }, 6000)
-    })
-    $(".close").on("click", function () {
-        clearInterval(intervalContent)
-        document.querySelector(".title__letter").textContent = "";
-        text__letter.textContent = "";
-        currentIndexLetter = 0
-        currentIndexTitle = 0
-        document.querySelector("#heart__letter").classList.remove("animationOp");
-        document.querySelector(".love__img").classList.remove("animationOp");
-        document.querySelector("#mewmew").classList.remove("animationOp");
-        document.querySelectorAll(".heart").forEach((item) => {
-            item.classList.remove("animation")
-        })
-        $(".box__letter").slideUp();
-        $(".letter__border").slideUp();
-    })
-
-
-    let mailBox = document.querySelector('.mail')
-    let boxmail = document.querySelector('.boxMail')
-    var close = document.querySelector('.fa-xmark')
-    mailBox.onclick = function () {
-        mailBox.classList.toggle('active')
-        boxmail.classList.add('active')
-    }
-
-    close.addEventListener('click', function () {
-        boxmail.classList.remove('active')
-    })
-    const nextBtn = document.getElementById("nextPageBtn");
-const backBtn = document.getElementById("backBtn");
-
-const wrapper = document.getElementById("wrapper");
-const page2 = document.querySelector(".page2");
-
-nextBtn.addEventListener("click", () => {
-    wrapper.style.display = "none";
-    page2.classList.add("show");
-});
-
-backBtn.addEventListener("click", () => {
-    page2.classList.remove("show");
+    let dateEl = document.querySelector(".date__of__birth span");
 
     setTimeout(() => {
-        wrapper.style.display = "block";
-    }, 300); // wait for animation
-});
-const photos = document.querySelectorAll(".photo");
-const popup = document.querySelector(".letterPopup");
-const letterText = document.getElementById("letterText");
-const closeLetter = document.querySelector(".closeLetter");
+        let timer = setInterval(() => {
+            if (i < dateArr.length) {
+                dateEl.textContent += dateArr[i];
+                i++;
+            } else {
+                clearInterval(timer);
 
-// open letter on photo click
-const letterImage = document.getElementById("letterImage");
+                let star = document.createElement("i");
+                star.className = "fa-solid fa-star";
+                document.querySelector(".date__of__birth").appendChild(star);
+            }
+        }, 100);
+    }, 12000);
 
-photos.forEach(photo => {
-    photo.addEventListener("click", function () {
 
-        const content = this.dataset.letter;
+    /* ================= MAIL ================= */
+    const mail = document.querySelector(".mail");
+    const boxmail = document.querySelector(".boxMail");
+    const closeMail = document.querySelector(".fa-xmark");
 
-        // If it's an image path
-        if (content.endsWith(".png") ||
-            content.endsWith(".jpg") ||
-            content.endsWith(".jpeg") ||
-            content.endsWith(".gif")) {
-
-            letterText.style.display = "none";
-            letterImage.style.display = "block";
-            letterImage.src = content;
-
-        } else {
-
-            letterImage.style.display = "none";
-            letterText.style.display = "block";
-            letterText.textContent = content;
-        }
-
-        popup.style.display = "flex";
+    mail.addEventListener("click", () => {
+        boxmail.classList.add("active");
     });
-});
+
+    closeMail.addEventListener("click", () => {
+        boxmail.classList.remove("active");
+    });
 
 
-// close when clicking X
-closeLetter.addEventListener("click", () => {
-    popup.style.display = "none";
-});
+    /* ================= PAGE SWITCH ================= */
+    const wrapper = document.getElementById("wrapper");
+    const page2 = document.querySelector(".page2");
+    const nextBtn = document.getElementById("nextPageBtn");
+    const backBtn = document.getElementById("backBtn");
 
-// close when clicking outside box
-popup.addEventListener("click", (e) => {
-    if (e.target === popup) {
+    nextBtn.addEventListener("click", () => {
+        wrapper.style.display = "none";
+        page2.classList.add("show");
+    });
+
+    backBtn.addEventListener("click", () => {
+        page2.classList.remove("show");
+        setTimeout(() => {
+            wrapper.style.display = "block";
+        }, 300);
+    });
+
+
+    /* ================= PHOTO POPUP ================= */
+    const photos = document.querySelectorAll(".photo");
+    const popup = document.querySelector(".letterPopup");
+    const letterText = document.getElementById("letterText");
+    const letterImage = document.getElementById("letterImage");
+    const closeLetter = document.querySelector(".closeLetter");
+
+    photos.forEach(photo => {
+        photo.addEventListener("click", () => {
+
+            const content = photo.dataset.letter;
+            popup.style.display = "flex";
+
+            if (
+                content.endsWith(".png") ||
+                content.endsWith(".jpg") ||
+                content.endsWith(".jpeg") ||
+                content.endsWith(".gif")
+            ) {
+                letterText.style.display = "none";
+                letterImage.style.display = "block";
+                letterImage.src = content;
+            } else {
+                letterImage.style.display = "none";
+                letterText.style.display = "block";
+                letterText.textContent = content;
+            }
+        });
+    });
+
+    closeLetter.addEventListener("click", () => {
         popup.style.display = "none";
-    }
-});
-const music = document.getElementById("bgMusic");
+    });
 
-document.addEventListener("click", function startMusic() {
-    music.play();
-    document.removeEventListener("click", startMusic);
+    popup.addEventListener("click", (e) => {
+        if (e.target === popup) {
+            popup.style.display = "none";
+        }
+    });
+
+
+    /* ================= MUSIC ================= */
+    const music = document.getElementById("bgMusic");
+
+    document.addEventListener("click", function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+    });
+
 });
 </script>
-
 </html>
